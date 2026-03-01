@@ -94,7 +94,7 @@ body {
 .brand-name {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   color: var(--slate-900);
   user-select: none;
 }
@@ -148,12 +148,30 @@ body {
 .hero-inner {
   max-width: var(--max-w-6xl);
   margin: 0 auto;
-  text-align: center;
   width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+@media (min-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 4rem;
+  }
+
+  .hero-arrow {
+    grid-column: 1 / -1;
+  }
+}
+
+.hero-content {
+  text-align: left;
 }
 
 .hero-h1 {
-  font-size: clamp(3rem, 8vw, 4.5rem);
+  font-size: clamp(2.5rem, 6vw, 4rem);
   font-weight: 700;
   color: var(--slate-900);
   line-height: 1.1;
@@ -169,11 +187,126 @@ body {
 }
 
 .hero-desc {
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: var(--slate-600);
-  max-width: 42rem;
-  margin: 0 auto 1.5rem;
+  max-width: 32rem;
+  margin: 0 0 1.5rem;
   line-height: 1.6;
+}
+
+.hero-download-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.hero-badge-link {
+  display: inline-block;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+.hero-badge-link:hover {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+.hero-badge-img {
+  height: 2.75rem;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.hero-phones {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 420px;
+}
+
+@media (min-width: 900px) {
+  .hero-phones {
+    justify-content: flex-end;
+    align-items: center;
+    min-height: 580px;
+  }
+}
+
+.hero-phone {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 1.25rem;
+  position: absolute;
+  transform-origin: bottom right;
+  top: 50%;
+  right: 50%;
+  margin-right: -125px;
+  filter: none;
+}
+
+@media (min-width: 900px) {
+  .hero-phone {
+    max-width: 320px;
+    margin-right: 0;
+    right: 18%;
+    left: auto;
+  }
+
+  .hero-phone--1 {
+    transform: translateY(-50%) rotate(0deg);
+    z-index: 3;
+  }
+
+  .hero-phone--2 {
+    transform: translateY(-50%) rotate(24deg);
+    z-index: 1;
+    transition: transform 0.35s ease;
+  }
+
+  .hero-phone--2:hover {
+    transform: translateY(-50%) scale(1.04) rotate(30deg);
+  }
+
+  .hero-phone--3 {
+    transform: translateY(-50%) rotate(12deg);
+    z-index: 2;
+    transition: transform 0.35s ease;
+  }
+
+  .hero-phone--3:hover {
+    transform: translateY(-50%) scale(1.04) rotate(16deg);
+  }
+}
+
+@media (max-width: 899px) {
+  .hero-phone--1 {
+    transform: translateY(-50%) rotate(0deg);
+    z-index: 3;
+  }
+
+  .hero-phone--2 {
+    transform: translateY(-50%) rotate(24deg);
+    z-index: 1;
+    transition: transform 0.35s ease;
+  }
+
+  .hero-phone--2:hover {
+    transform: translateY(-50%) scale(1.04) rotate(30deg);
+  }
+
+  .hero-phone--3 {
+    transform: translateY(-50%) rotate(12deg);
+    z-index: 2;
+    transition: transform 0.35s ease;
+  }
+
+  .hero-phone--3:hover {
+    transform: translateY(-50%) scale(1.04) rotate(16deg);
+  }
 }
 
 .hero-ctas {
@@ -247,7 +380,8 @@ body {
 }
 
 .hero-arrow {
-  display: inline-flex;
+  display: flex;
+  justify-content: center;
   margin-top: 3.5rem;
   color: var(--slate-400);
   transition: color 0.2s;
@@ -317,7 +451,7 @@ body {
 }
 
 .feature-card {
-  padding: 0;
+  padding: 2rem 0 0;
   background: var(--slate-50);
   border: 1px solid var(--slate-100);
   border-radius: 1.5rem;
@@ -327,24 +461,17 @@ body {
   flex-direction: column;
 }
 
-.feature-card .feature-img {
-  width: 100%;
-  height: auto;
-  max-height: 280px;
-  object-fit: cover;
-  object-position: top center;
-  display: block;
-}
-
-.feature-card .feature-icon-wrap {
-  margin-top: 1.5rem;
-}
-
 .feature-card .feature-icon-wrap,
 .feature-card .feature-title,
 .feature-card .feature-desc {
   padding-left: 2rem;
   padding-right: 2rem;
+}
+
+.feature-card .feature-icon-wrap {
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .feature-card .feature-desc {
@@ -378,9 +505,20 @@ body {
 .feature-icon-wrap--emerald .feature-icon { color: var(--emerald-500); }
 .feature-icon-wrap--blue .feature-icon { color: var(--blue-500); }
 
+.feature-icon-wrap--blue .feature-icon--book {
+  color: var(--blue-500);
+}
+
 .feature-icon {
   width: 2rem;
   height: 2rem;
+}
+
+.feature-icon-img {
+  width: 2.5rem;
+  height: 2.5rem;
+  object-fit: contain;
+  filter: brightness(0);
 }
 
 .feature-title {
