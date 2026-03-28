@@ -248,7 +248,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .hero-badge-link {
@@ -266,6 +266,29 @@ body {
   width: auto;
   display: block;
   object-fit: contain;
+}
+
+.badge-play-soon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.badge-play-soon__img {
+  filter: grayscale(1);
+  opacity: 0.48;
+  pointer-events: none;
+  user-select: none;
+}
+
+.badge-play-soon__label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate-400);
+  line-height: 1;
 }
 
 .hero-phones {
@@ -1011,6 +1034,7 @@ body {
 @media (min-width: 640px) {
   .download-badges {
     flex-direction: row;
+    align-items: flex-start;
   }
 }
 
@@ -1026,6 +1050,10 @@ body {
   height: 3.5rem;
   width: auto;
   object-fit: contain;
+}
+
+.download .badge-play-soon__label {
+  color: var(--slate-500);
 }
 
 /* ----- Footer ----- */
